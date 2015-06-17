@@ -29,45 +29,55 @@ namespace UnitTestProject2
 
          }
 
-         public static void manageCerAndroid(RemoteWebDriver wd , String device, TestContext context)
+         public static void clickButtonByTextOCR(RemoteWebDriver wd , String text, TestContext context)
          {
 
              Console.WriteLine(" ***  =>  " );
              String   command = "mobile:button-text:click";
              Dictionary<string, string> param = new Dictionary<string, string>();
-             param.Add("DUT", device);
              param.Add("label", "Advance");
              param.Add("timeout", "30");
-
-             Console.WriteLine(" ***  => 2 ");
-             string result = (string)wd.ExecuteScript(command, param);
+              string result = (string)wd.ExecuteScript(command, param);
              Console.WriteLine(" result =>  " + result);
+        }
+        
 
+        public static void swipeUp(RemoteWebDriver wd , String text, TestContext context)
+         {
              command = "mobile:touch:swipe";
              param = new Dictionary<string, string>();
-             param.Add("DUT", device);
              param.Add("start", "50%,85%");
              param.Add("end", "50%,10%");
              result = (string)wd.ExecuteScript(command, param);
-
-
+         }
+         
+         public static void swipeDown(RemoteWebDriver wd , String text, TestContext context)
+         {
+             command = "mobile:touch:swipe";
+             param = new Dictionary<string, string>();
+             param.Add("start", "50%,15%");
+             param.Add("end", "50%,80%");
+             result = (string)wd.ExecuteScript(command, param);
+         }
+        
+        public static void buttonClick(RemoteWebDriver wd , String text, TestContext context)
+        {
              command = "mobile:button-text:click";
              param = new Dictionary<string, string>();
-             param.Add("DUT", device);
-             param.Add("label", "unsafe");
+             param.Add("label", text);
              param.Add("timeout", "30");
 
              result = (string)wd.ExecuteScript(command, param);
-
-
+        }
+    
+        public static void vnetwork(RemoteWebDriver wd ,TestContext context)
+         {
              command = "mobile:vnetwork:start";
              param = new Dictionary<string, string>();
              param.Add("profile", "4g_lte_poor");
 
             result = (string)wd.ExecuteScript(command, param);
- 
- 
-         }
+        }
 
      }
 }
